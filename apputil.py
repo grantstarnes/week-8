@@ -11,9 +11,19 @@ class MarkovText(object):
 
         term_dict = defaultdict(list)
 
-        self.term_dict = {}
+        if isinstance(self.corpus, str):
+            tokens = self.corpus.split()
+        else:
+            tokens = self.corpus
+        
+        for i in range(len(tokens) - 1):
+            current_word = tokens[i]
+            following_word = tokens[i + 1]
+            term_dict[current_word].append(following_word)
 
-        return None
+        self.term_dict = dict(term_dict)
+
+        return self.term_dict
 
 
     def generate(self, seed_term=None, term_count=15):
