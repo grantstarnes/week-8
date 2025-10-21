@@ -9,7 +9,7 @@ class MarkovText(object):
 
     def get_term_dict(self):
 
-        # your code here ...
+        term_dict = defaultdict(list)
 
         self.term_dict = {}
 
