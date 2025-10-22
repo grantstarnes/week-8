@@ -50,21 +50,33 @@ class MarkovText(object):
         follow the current_word.
         '''
 
+        # Selects the starting word whether it's the provided seed or randomized seed
         if seed_term is None:
             current_word = np.random.choice(list(self.term_dict.keys()))
         else:
+            # Makes sure the provided seed is in the term_dict, throws a ValueError if not
             if seed_term not in self.term_dict:
                 raise ValueError(f"Seed term '{seed_term}' not in term_dict")
             current_word = seed_term
 
         selected_word = [current_word]
 
+        # Uses a for loop to randomly generate the remaining words
         for _ in range(term_count - 1):
+
+            # Gets the list from term_dict of the possible words that follow
             next_words = self.term_dict.get(current_word)
+
             if not next_words:
+
+                # If the selected word doesn't have a following word, it will randomize and select a new word from term_dict
                 current_word = np.random.choice(list(self.term_dict.keys()))
             else:
+                # Else, it will randomly select the next word from the list of following words
                 current_word = np.random.choice(next_words)
+            
+            # Appends the chosen word to selected_word
             selected_word.append(current_word)
 
+        # Joins all of the words into one single combined string, and returns this string
         return " ".join(selected_word)
