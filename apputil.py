@@ -15,20 +15,28 @@ class MarkovText(object):
         dictionary with the token words and their list of following words for every word.
         '''
 
+        # Creates a dictionary where all keys have an empty list as the value
         term_dict = defaultdict(list)
 
+        # If the corpus taken in is a string, we will split it into a list of words
+        # Else, is if the corpus taken in is a list of tokens as is
         if isinstance(self.corpus, str):
             tokens = self.corpus.split()
         else:
             tokens = self.corpus
         
+        # We will iterate through each token, and for each token, we will append
+        # each word that follows the token to the corresponding list for the values
+        # of each token
         for i in range(len(tokens) - 1):
             current_word = tokens[i]
             following_word = tokens[i + 1]
             term_dict[current_word].append(following_word)
 
+        # This just converts term_dict to a dictionary before getting the output
         self.term_dict = dict(term_dict)
 
+        # Returns the dictionary
         return self.term_dict
 
 
