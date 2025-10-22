@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import numpy as np
 
 class MarkovText(object):
 
@@ -28,6 +28,11 @@ class MarkovText(object):
 
     def generate(self, seed_term=None, term_count=15):
 
-        # your code here ...
+        if seed_term is None:
+            current_word = np.random.choice(list(self.term_dict.keys()))
+        else:
+            if seed_term not in self.term_dict:
+                raise ValueError(f"Seed term '{seed_term}' not in term_dict")
+            current_word = seed_term
 
         return None
