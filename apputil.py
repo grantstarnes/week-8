@@ -5,9 +5,15 @@ class MarkovText(object):
 
     def __init__(self, corpus):
         self.corpus = corpus
-        self.term_dict = None  # you'll need to build this
+        self.term_dict = None
 
     def get_term_dict(self):
+        '''
+        This method get_term_dict creates a dictionary where each key is a unique
+        token from the defined corpus. The value for each key is a list of following
+        words that directly follow the key/token. This method finally then returns a 
+        dictionary with the token words and their list of following words for every word.
+        '''
 
         term_dict = defaultdict(list)
 
