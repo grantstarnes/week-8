@@ -41,6 +41,14 @@ class MarkovText(object):
 
 
     def generate(self, seed_term=None, term_count=15):
+        '''
+        This generate method utilizes the term_dict from the get_term_dict method
+        to generate a random sequence of words using numpy (np.random.choice).
+        It takes in a possible seed word, and if one isn't provided, it will 
+        select a random seed word instead. After that, each following word in the 
+        string is chosen at random as well based on the words that typically would
+        follow the current_word.
+        '''
 
         if seed_term is None:
             current_word = np.random.choice(list(self.term_dict.keys()))
