@@ -35,4 +35,14 @@ class MarkovText(object):
                 raise ValueError(f"Seed term '{seed_term}' not in term_dict")
             current_word = seed_term
 
-        return None
+        selected_word = [current_word]
+
+        for _ in range(term_count - 1):
+            next_words = self.term_dict.get(current_word)
+            if not next_words:
+                current_word = np.random.choice(list(self.term_dict.keys()))
+            else:
+                current_word = np.random.choice(next_words)
+            selected_word.append(current_word)
+
+        return " ".join(selected_word)
